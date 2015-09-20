@@ -13,7 +13,7 @@ macro mkdeepconvert3(ff, ccfunc, targtype)
          Expr(ex.head, map((x) -> (typeof(x) <: $targtype ?
            ($cfunc)(x) : typeof(x) == Expr ? ($f)(x) : x), ex.args)...)
      end
-     ($f)(x::String) = ($f)(parse(x))
+     ($f)(x::AbstractString) = ($f)(parse(x))
      ($f)(x) = ($cfunc)(x)
    end
 end
@@ -41,7 +41,7 @@ macro mkdeepconvert(ff, ccfunc)
                ex.args)...))
             end 
         end
-        ($f)(x::String) = ($f)(parse(x))
+        ($f)(x::AbstractString) = ($f)(parse(x))
         ($f)(x) = ($cfunc)(x)
     end
 end
@@ -65,7 +65,7 @@ macro mkdeepconvert1(ff, ccfunc)
              end,
              ex.args)...))
         end
-        ($f)(x::String) = ($f)(parse(x))
+        ($f)(x::AbstractString) = ($f)(parse(x))
         ($f)(x) = ($cfunc)(x)
     end
 end
@@ -89,7 +89,7 @@ macro mkdeepconvert2(ff, ccfunc, targtype)
              end,
              ex.args)...)
         end
-        ($f)(x::String) = ($f)(parse(x))
+        ($f)(x::AbstractString) = ($f)(parse(x))
         ($f)(x) = ($cfunc)(x)
     end
 end
